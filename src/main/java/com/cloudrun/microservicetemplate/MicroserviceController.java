@@ -19,9 +19,13 @@ package com.cloudrun.microservicetemplate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.MDC;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /** Example REST controller to demonstrate structured logging. */
 @RestController
@@ -42,4 +46,12 @@ public class MicroserviceController {
     logger.info("Structured logging example.");
     return "Hello World!";
   }
+
+  @GetMapping("/test")
+  public ResponseEntity<Map<String, String>> test() {
+    Map<String, String> response = new HashMap<>();
+    response.put("data", "hello world");
+    return ResponseEntity.ok(response);
+  }
+
 }

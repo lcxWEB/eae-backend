@@ -1,5 +1,7 @@
 package com.cloudrun.microservicetemplate.controller;
 
+import com.cloudrun.microservicetemplate.entities.Motor;
+import com.cloudrun.microservicetemplate.service.MotorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,18 +16,11 @@ public class DashboardController {
     // @Autowired
     // private StatusIndicatorService statusIndicatorService;
     //
-    // @Autowired
-    // private MotorService motorService;
-    //
+    @Autowired
+    private MotorService motorService;
+
     // @Autowired
     // private BatteryService batteryService;
-
-    @GetMapping("/test")
-    public ResponseEntity<Map<String, String>> test() {
-        Map<String, String> response = new HashMap<>();
-        response.put("data", "hello world");
-        return ResponseEntity.ok(response);
-    }
 
     // // ======================
     // // Status Indicators
@@ -36,20 +31,20 @@ public class DashboardController {
     //     return ResponseEntity.ok(icons);
     // }
     //
-    // // ======================
-    // // Motor
-    // // ======================
-    // @GetMapping("/motor")
-    // public ResponseEntity<Motor> getMotorDetails() {
-    //     Motor motor = motorService.getMotorDetails();
-    //     return ResponseEntity.ok(motor);
-    // }
-    //
-    // @GetMapping("/motor/gear-ratio")
-    // public ResponseEntity<String> getGearRatio() {
-    //     String gearRatio = motorService.getGearRatio();
-    //     return ResponseEntity.ok(gearRatio);
-    // }
+    // ======================
+    // Motor
+    // ======================
+    @GetMapping("/motor")
+    public ResponseEntity<Motor> getMotorDetails() {
+        Motor motor = motorService.getMotorDetails();
+        return ResponseEntity.ok(motor);
+    }
+
+    @GetMapping("/motor/gear-ratio")
+    public ResponseEntity<String> getGearRatio() {
+        String gearRatio = motorService.getGearRatio();
+        return ResponseEntity.ok(gearRatio);
+    }
     //
     // @PostMapping("/motor/slider")
     // public ResponseEntity<String> updateMotorSpeed(@RequestParam int speedSetting) {
