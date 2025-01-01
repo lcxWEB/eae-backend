@@ -21,9 +21,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 /** Microservice template for Cloud Run. */
 @SpringBootApplication
+@EnableScheduling
 public class MicroserviceTemplateApplication {
   private static final Logger logger =
       LoggerFactory.getLogger(MicroserviceTemplateApplication.class);

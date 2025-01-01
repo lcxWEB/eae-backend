@@ -61,6 +61,6 @@ public class Motor {
     }
 
     public String getGearRatio() {
-        return gearRatioNumerator + ":" + gearRatioDenominator;
+        return gearRatioNumerator + "/" + gearRatioDenominator;
     }
 }
