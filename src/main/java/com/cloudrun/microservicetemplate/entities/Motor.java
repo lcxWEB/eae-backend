@@ -14,7 +14,8 @@ public class Motor {
     private Long id;
 
     private Integer rpm;
-    private Double powerConsumption;
+    private Integer speed;
+    private Integer powerConsumption;
 
     private Integer gearRatioNumerator; // Numerator of the gear ratio
     private Integer gearRatioDenominator; // Denominator of the gear ratio
@@ -36,11 +37,19 @@ public class Motor {
         this.rpm = rpm;
     }
 
-    public Double getPowerConsumption() {
+    public Integer getSpeed() {
+        return speed;
+    }
+
+    public void setSpeed(Integer speed) {
+        this.speed = speed;
+    }
+
+    public Integer getPowerConsumption() {
         return powerConsumption;
     }
 
-    public void setPowerConsumption(Double powerConsumption) {
+    public void setPowerConsumption(Integer powerConsumption) {
         this.powerConsumption = powerConsumption;
     }
 

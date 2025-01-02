@@ -1,5 +1,6 @@
 package com.cloudrun.microservicetemplate.service;
 
+import com.cloudrun.microservicetemplate.constants.Constant;
 import com.cloudrun.microservicetemplate.entities.Battery;
 import com.cloudrun.microservicetemplate.entities.Indicator;
 import com.cloudrun.microservicetemplate.entities.Motor;
@@ -37,12 +38,12 @@ public class IndicatorService {
         indicators.stream()
                 .filter(indicator -> indicator.getName().equals("motor"))
                 .findFirst()
-                .ifPresent(indicator -> indicator.setActiveState(motor.getRpm() > 1000));
+                .ifPresent(indicator -> indicator.setActiveState(motor.getRpm() > Constant.RPM_THRESHOLD));
 
         indicators.stream()
                 .filter(indicator -> indicator.getName().equals("battery_low"))
                 .findFirst()
-                .ifPresent(indicator -> indicator.setActiveState(battery.getPercentage() < 20));
+                .ifPresent(indicator -> indicator.setActiveState(battery.getPercentage() < Constant.BATTERY_PERCENTAGE_THRESHOLD));
 
         return indicators;
     }

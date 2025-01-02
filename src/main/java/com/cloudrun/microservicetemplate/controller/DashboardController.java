@@ -29,13 +29,13 @@ public class DashboardController {
     // Status Indicators
     // ======================
     @GetMapping("/indicators")
-    public ResponseEntity<List<Indicator>> getIcons() {
+    public ResponseEntity<List<Indicator>> getIndicators() {
         List<Indicator> indicators = indicatorService.getStatusIndicators();
         return ResponseEntity.ok(indicators);
     }
 
     // ======================
-    // Motor
+    // Motor, Gauges (Power & RPM)
     // ======================
     @GetMapping("/motor")
     public ResponseEntity<Motor> getMotorDetails() {
@@ -43,31 +43,10 @@ public class DashboardController {
         return ResponseEntity.ok(motor);
     }
 
-    @GetMapping("/motor/gear-ratio")
-    public ResponseEntity<String> getGearRatio() {
-        String gearRatio = motorService.getGearRatio();
-        return ResponseEntity.ok(gearRatio);
-    }
-
-    @PostMapping("/motor/slider")
-    public ResponseEntity<String> updateMotorSpeed(@RequestParam int speedSetting) {
-        motorService.updateMotorSpeed(speedSetting);
+    @PostMapping("/motor/update-speed")
+    public ResponseEntity<String> updateMotorSpeed(@RequestParam int speed) {
+        motorService.updateMotorSpeed(speed);
         return ResponseEntity.ok("Motor speed updated");
-    }
-
-    // ======================
-    // Gauges (Power & RPM)
-    // ======================
-    @GetMapping("/gauges/power")
-    public ResponseEntity<Double> getPowerConsumption() {
-        Double power = motorService.calculatePowerConsumption();
-        return ResponseEntity.ok(power);
-    }
-
-    @GetMapping("/gauges/rpm")
-    public ResponseEntity<Integer> getMotorRPM() {
-        Integer rpm = motorService.getCurrentRPM();
-        return ResponseEntity.ok(rpm);
     }
 
     // ======================

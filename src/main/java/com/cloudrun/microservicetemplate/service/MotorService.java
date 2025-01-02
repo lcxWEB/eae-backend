@@ -32,26 +32,12 @@ public class MotorService {
         if (battery.getChargingState()) {
             motor.setRpm(0); // Motor disabled when charging
         } else {
-            motor.setRpm(speedSetting * 500); // Example calculation
+            motor.setRpm(speedSetting * 200); // Example calculation
         }
-
+        motor.setPowerConsumption((int) (motor.getRpm() * 1.2));
+        motor.setSpeed(speedSetting);
         motorRepository.save(motor);
     }
 
-    public Double calculatePowerConsumption() {
-        Motor motor = motorRepository.findById(1L).orElseThrow(() -> new RuntimeException("Motor not found"));
-        Battery battery = batteryRepository.findById(1L).orElseThrow(() -> new RuntimeException("Battery not found"));
-
-        if (battery.getChargingState()) {
-            return -50.0; // Example negative power when charging
-        }
-
-        return motor.getRpm() * 0.1; // Example calculation
-    }
-
-    public Integer getCurrentRPM() {
-        Motor motor = motorRepository.findById(1L).orElseThrow(() -> new RuntimeException("Motor not found"));
-        return motor.getRpm();
-    }
 
 }
